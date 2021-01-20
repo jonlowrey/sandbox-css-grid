@@ -27,6 +27,7 @@
                         console.log('... file[' + i + '].name = ' + file.name);
                         console.log(file);
                         reader.readAsDataURL(file);
+                        ev.target.innerHTML = '';
                     }
                 }
             } else {
@@ -52,7 +53,7 @@
         function writeClick(ev) {
             const newItem = document.createElement('textarea');
             newItem.innerHTML = 'Write in me!';
-            ev.target.parentNode.replaceChild(newItem, ev.target)
+            ev.target.parentNode.parentNode.replaceChild(newItem)
         }
         // window.onbeforeunload = function () {
         //     return "You will lose your work if you navigate away!";
@@ -63,7 +64,7 @@
 
 <body>
     <div class="container" ondragover="dragOverHandler(event);">
-        <nav>Banner</nav>
+        <nav ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">Banner</nav>
         <main ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
             Main</br>
             Drag a picture on me!
