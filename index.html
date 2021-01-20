@@ -33,7 +33,7 @@
                 // Use DataTransfer interface to access the file(s)
                 for (var i = 0; i < ev.dataTransfer.files.length; i++) {
                     console.log('... file[' + i + '].name = ' + ev.dataTransfer.files[i].name);
-             
+
                 }
             }
         }
@@ -43,24 +43,43 @@
             // Prevent default behavior (Prevent file from being opened)
             ev.preventDefault();
         }
+        function picClick(ev) {
+            window.alert("CLICK", ev)
+
+
+        }
+
+        function writeClick(ev) {
+            const newItem = document.createElement('textarea');
+            newItem.innerHTML = 'Write in me!';
+            ev.target.parentNode.replaceChild(newItem, ev.target)
+        }
+        // window.onbeforeunload = function () {
+        //     return "You will lose your work if you navigate away!";
+        // }
 
     </script>
 </head>
 
 <body>
-    <div class="container">
-        <nav>Navbar</nav>
-        <main id="drop_zone" ondrop="dropHandler(event);"
-            ondragover="dragOverHandler(event)" ;>
-            Main<br>
+    <div class="container" ondragover="dragOverHandler(event);">
+        <nav>Banner</nav>
+        <main ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
+            Main</br>
             Drag a picture on me!
 
         </main>
         <div id="sidebar">Sidebar</div>
-        <div id="content1">Content1</div>
-        <div id="content2">Content2</div>
-        <div id="content3">Content3</div>
-        <footer>Footer</footer>
+        <div id="content1" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">Content1</div>
+        <div id="content2" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
+            Content2
+            <img src="images/pic.svg" width="50px" onclick="picClick(event);" />
+            <img src="images/write.svg" width="50px" onclick="writeClick(event)"/>
+
+
+        </div>
+        <div id="content3" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">Content3</div>
+        <footer ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">Footer</footer>
     </div>
 </body>
 
