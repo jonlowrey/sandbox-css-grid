@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jon's Sandbox</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function dropHandler(ev) {
+            console.log('File(s) dropped');
+            let reader = new FileReader();
+            reader.onload = (loadedFile) => {
+                console.log(loadedFile.target.result);
+                ev.target.style.background = 'url(' + loadedFile.target.result + ') no-repeat center';
+            };
+
+            // Prevent default behavior (Prevent file from being opened)
+            ev.preventDefault();
+
+            if (ev.dataTransfer.items) {
+                // Use DataTransferItemList interface to access the file(s)
+                for (var i = 0; i < ev.dataTransfer.items.length; i++) {
+                    // If dropped items aren't files, reject them
+                    if (ev.dataTransfer.items[i].kind === 'file') {
+                        var file = ev.dataTransfer.items[i].getAsFile();
+                        console.log('... file[' + i + '].name = ' + file.name);
+                        console.log(file);
+                        reader.readAsDataURL(file);
+                    }
+                }
+            } else {
+                // Use DataTransfer interface to access the file(s)
+                for (var i = 0; i < ev.dataTransfer.files.length; i++) {
+                    console.log('... file[' + i + '].name = ' + ev.dataTransfer.files[i].name);
+             
+                }
+            }
+        }
+        function dragOverHandler(ev) {
+            console.log('File(s) in drop zone');
+
+            // Prevent default behavior (Prevent file from being opened)
+            ev.preventDefault();
+        }
+
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <nav>Navbar</nav>
+        <main id="drop_zone" ondrop="dropHandler(event);"
+            ondragover="dragOverHandler(event)" ;>Main
+
+        </main>
+        <div id="sidebar">Sidebar</div>
+        <div id="content1">Content1</div>
+        <div id="content2">Content2</div>
+        <div id="content3">Content3</div>
+        <footer>Footer</footer>
+    </div>
+</body>
+
+</html>
