@@ -6,89 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jon's Sandbox</title>
     <link rel="stylesheet" href="styles.css">
-    <script>
-        function dropHandler(ev) {
-            console.log('File(s) dropped');
-            let reader = new FileReader();
-            reader.onload = (loadedFile) => {
-                console.log(loadedFile.target.result);
-                ev.target.style.background = 'url(' + loadedFile.target.result + ') no-repeat center';
-            };
-
-            // Prevent default behavior (Prevent file from being opened)
-            ev.preventDefault();
-
-            if (ev.dataTransfer.items) {
-                // Use DataTransferItemList interface to access the file(s)
-                for (var i = 0; i < ev.dataTransfer.items.length; i++) {
-                    // If dropped items aren't files, reject them
-                    if (ev.dataTransfer.items[i].kind === 'file') {
-                        var file = ev.dataTransfer.items[i].getAsFile();
-                        console.log('... file[' + i + '].name = ' + file.name);
-                        console.log(file);
-                        reader.readAsDataURL(file);
-                        ev.target.innerHTML = '';
-                    }
-                }
-            } else {
-                // Use DataTransfer interface to access the file(s)
-                for (var i = 0; i < ev.dataTransfer.files.length; i++) {
-                    console.log('... file[' + i + '].name = ' + ev.dataTransfer.files[i].name);
-
-                }
-            }
-        }
-        function dragOverHandler(ev) {
-            console.log('File(s) in drop zone');
-
-            // Prevent default behavior (Prevent file from being opened)
-            ev.preventDefault();
-        }
-        function picClick(ev) {
-            // window.alert("CLICK", ev)
-            const parent = ev.target.parentNode;
-            parent.innerHTML = 'Drag a picture onto me'
-            parent.addEventListener("drop", dropHandler);
-            parent.addEventListener("dragover", dragOverHandler);
-
-
-        }
-
-        function writeClick(ev) {
-            const newItem = document.createElement('textarea');
-            newItem.innerHTML = 'Write in me!';
-            const parent = ev.target.parentNode;
-            parent.innerHTML= '';
-            parent.appendChild(newItem);
-        }
-        // window.onbeforeunload = function () {
-        //     return "You will lose your work if you navigate away!";
-        // }
-
-    </script>
 </head>
 
 <body>
     <div class="container" ondragover="dragOverHandler(event);">
-        <nav ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
-            <img src="images/pic.svg" width="50px" onclick="picClick(event);" />
-            <img src="images/write.svg" width="50px" onclick="writeClick(event)"/>
+        <nav>
+            Nav
         </nav>
-        <main ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
-            Welcome!<br/>
-            You can add pictures or text to any box.<br/>
-            Just click the icon to choose between Picture or Text<br/><br/><br/>
-            <img src="images/pic.svg" width="50px" onclick="picClick(event);" />
-            <img src="images/write.svg" width="50px" onclick="writeClick(event)"/>
-
+        <main>
+            Main
         </main>
-        <div id="sidebar" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
-            <img src="images/pic.svg" width="50px" onclick="picClick(event);" />
-            <img src="images/write.svg" width="50px" onclick="writeClick(event)"/>
+        <div id="sidebar">
+            Sidebar
         </div>
-        <footer ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
-            <img src="images/pic.svg" width="50px" onclick="picClick(event);" />
-            <img src="images/write.svg" width="50px" onclick="writeClick(event)"/>
+        <footer>
+            Footer
         </footer>
     </div>
 </body>
