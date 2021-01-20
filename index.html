@@ -45,7 +45,11 @@
             ev.preventDefault();
         }
         function picClick(ev) {
-            window.alert("CLICK", ev)
+            // window.alert("CLICK", ev)
+            const parent = ev.target.parentNode;
+            parent.innerHTML = 'Drag a picture onto me'
+            parent.addEventListener("drop", dropHandler);
+            parent.addEventListener("dragover", dragOverHandler);
 
 
         }
@@ -53,7 +57,9 @@
         function writeClick(ev) {
             const newItem = document.createElement('textarea');
             newItem.innerHTML = 'Write in me!';
-            ev.target.parentNode.parentNode.replaceChild(newItem)
+            const parent = ev.target.parentNode;
+            parent.innerHTML= '';
+            parent.appendChild(newItem);
         }
         // window.onbeforeunload = function () {
         //     return "You will lose your work if you navigate away!";
@@ -64,23 +70,43 @@
 
 <body>
     <div class="container" ondragover="dragOverHandler(event);">
-        <nav ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">Banner</nav>
+        <nav ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
+            Banner
+            <img src="images/pic.svg" width="50px" onclick="picClick(event);" />
+            <img src="images/write.svg" width="50px" onclick="writeClick(event)"/>
+        </nav>
         <main ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
             Main</br>
             Drag a picture on me!
-
-        </main>
-        <div id="sidebar">Sidebar</div>
-        <div id="content1" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">Content1</div>
-        <div id="content2" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
-            Content2
             <img src="images/pic.svg" width="50px" onclick="picClick(event);" />
             <img src="images/write.svg" width="50px" onclick="writeClick(event)"/>
 
-
+        </main>
+        <div id="sidebar" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
+            Sidebar
+            <img src="images/pic.svg" width="50px" onclick="picClick(event);" />
+            <img src="images/write.svg" width="50px" onclick="writeClick(event)"/>
         </div>
-        <div id="content3" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">Content3</div>
-        <footer ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">Footer</footer>
+        <div id="content1" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
+            Content1
+            <img src="images/pic.svg" width="50px" onclick="picClick(event);" />
+            <img src="images/write.svg" width="50px" onclick="writeClick(event)"/>
+        </div>
+        <div id="content2">
+            Content2
+            <img src="images/pic.svg" width="50px" onclick="picClick(event);" />
+            <img src="images/write.svg" width="50px" onclick="writeClick(event)"/>
+        </div>
+        <div id="content3" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
+            Content3
+            <img src="images/pic.svg" width="50px" onclick="picClick(event);" />
+            <img src="images/write.svg" width="50px" onclick="writeClick(event)"/>
+        </div>
+        <footer ondrop="dropHandler(event);" ondragover="dragOverHandler(event);">
+            Footer
+            <img src="images/pic.svg" width="50px" onclick="picClick(event);" />
+            <img src="images/write.svg" width="50px" onclick="writeClick(event)"/>
+        </footer>
     </div>
 </body>
 
