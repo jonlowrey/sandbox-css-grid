@@ -6,7 +6,7 @@
     grid-template-areas: 
     "nav nav nav nav"
     "sidebar main main main"
-    "sidebar content1 content2 content3"
+    "sidebar main main main"
     "sidebar footer footer footer";
     grid-gap: 0.2rem;
     padding: 0;
